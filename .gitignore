@@ -46,7 +46,8 @@ images/
 *.csv000
 unsplash-research-dataset-lite-latest/
 */images_*/
+data/
 */selected/
-
+*.json
 # Logs
 *.log 
