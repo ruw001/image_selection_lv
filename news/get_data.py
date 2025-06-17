@@ -15,6 +15,7 @@ import ollama
     "image_url": "https://static01.nyt.com/images/2019/11/06/science/05FDA-FLAVORS/05FDA-FLAVORS-facebookJumbo.jpg?year=2020&h=550&w=1050&s=ad27f3a70c71de51e7605bbbc258e54782257f2ebb657a8df4f0a833b1b42809&k=ZQJBKqZ0VN", 
     "article_url": "https://www.nytimes.com/2019/12/31/health/e-cigarettes-flavor-ban-trump.html", 
     "image_id": "42d25485-0e48-50bf-8d16-948"
+}
 
 '''
 
@@ -27,7 +28,7 @@ def get_data_info(news_path):
     for section_name, count in section_names.items():
         print(f"{section_name}: {count}")
 
-def get_eligible_images(news_path, num_limit=400):
+def get_eligible_images(news_path, num_limit=600):
     news = json.load(open(news_path, 'r'))
     ignore_list = [
         'Well', 'Books'
@@ -42,7 +43,7 @@ def get_eligible_images(news_path, num_limit=400):
     if not os.path.exists('images'):
         os.makedirs('images')
     # sort the news by length of caption
-    news.sort(key=lambda x: len(x['caption']))
+    news.sort(key=lambda x: len(x['caption'].split(' ')), reverse=True)
     for i in range(len(news)):
         article = news[i]
         if i % 100 == 0:
@@ -62,7 +63,7 @@ def get_eligible_images(news_path, num_limit=400):
         print(f"Processing image {i}/{total_count}, {img_id}...")
         # determine if the caption includes multiple salient objects using an agent
         resp = ollama.generate(
-            model="llama3.2:latest",
+            model="deepseek-r1:latest",
             prompt=f"Does the following caption for an image explicitly mention at least 2 (>= 2) salient objects (e.g., people, animals, objects, etc) on the foreground? \n \"{caption}\" \n\n "
             "Return only 'true' or 'false'. Do not include any other text in your response."
         )
@@ -81,5 +82,5 @@ def get_eligible_images(news_path, num_limit=400):
     
 
 if __name__ == '__main__':
-    # get_data_info('N24News/news/nytimes_dataset.json')
-    get_eligible_images('N24News/news/nytimes_dataset.json')
+    # get_data_info('nytimes_dataset.json')
+    get_eligible_images('nytimes_dataset.json')

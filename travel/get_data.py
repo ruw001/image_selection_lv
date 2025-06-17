@@ -18,8 +18,12 @@ def get_images(cvs_file):
     # get images with aspect ratio >= 1
     df = df[df['photo_aspect_ratio'] >= 1]
 
+    print(f"total images: {len(df)}")
+
+    # get the top 1000 images
     df = df.head(1000)
-    outpath = 'images_building'
+
+    outpath = 'images'
     if not os.path.exists(outpath):
         os.makedirs(outpath)
     for index, row in df.iterrows():
@@ -27,24 +31,24 @@ def get_images(cvs_file):
         # use agent to determine whether the description involves at least 2 salient objects, return a boolean
         print(f"prompting agent with desc: {desc}")
         resp = ollama.generate(
-            model="llama3.2:latest",
-            # prompt=f"Does the following description for an image involve at least 2 salient objects on the foreground? {desc} \n\n "
-            # "Note that mountains, rivers, small objects, etc. are not salient objects.\n\n"
-            # "Return only 'true' or 'false'. Do not include any other text in your response. Here is an example: \n"
-            # "For example, for a description 'selective focus photography of short-coated white and brown dog on fallen brown leaves during daytime', the dog is a salient object, but the leaves are not. There is only one salient object. You should return 'false'.\n\n"
+            model="deepseek-r1:latest",
+            prompt=f"Does the following description for an image explicitly mention at least 2 (>= 2) salient objects (e.g., people, animals, objects, etc) on the foreground? \n \"{desc}\" \n\n "
+            "Note that mountains, rivers, very small objects, etc. are not salient objects.\n\n"
+            "Return only 'true' or 'false'. Do not include any other text in your response. Here is an example: \n"
+            "For a description 'selective focus photography of short-coated white and brown dog on fallen brown leaves during daytime', the dog is a salient object, but the leaves are not. There is only one salient object. You should return 'false'."
 
             # prompt=f"Does the following description for an image involve at least 2 people or animals on the foreground? {desc} \n\n "
             # "Return only 'true' or 'false'. Do not include any other text in your response."
 
-            prompt=f"Does the following description for an image involve at least 2 buildings (or other man-made structures) on the foreground? {desc} \n\n "
-            "Return only 'true' or 'false'. Do not include any other text in your response."
+            # prompt=f"Does the following description for an image involve at least 2 buildings (or other man-made structures) on the foreground? {desc} \n\n "
+            # "Return only 'true' or 'false'. Do not include any other text in your response."
         )
-        print(resp)
+        # print(resp)
         name = row['photo_id']
         if resp['response'].lower() == "true":
             print(f">>>> {name} is a good image")
         else:
-            print(f">>>> {name} is a bad image")
+            print(f"<<<< {name} is a bad image")
             continue
         
         print(f"saving image {name}...")
@@ -58,4 +62,4 @@ def get_images(cvs_file):
         
 
 # get_header('unsplash-research-dataset-lite-latest/photos.csv000')
-get_images('unsplash-research-dataset-lite-latest/photos.csv000')
+get_images('photos.csv000')
