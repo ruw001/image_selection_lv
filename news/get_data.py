@@ -78,8 +78,33 @@ def get_eligible_images(news_path, num_limit=400):
             f.write(resp.content)
         print(f"Image {img_id} downloaded")
 
+
+def rename_images(news_img_path):
+    # get all the images in the folder
+    images = os.listdir(news_img_path)
+    cnt = 1
+    print(f"Renaming {len(images)} images...")
+    for image in images:
+        # get the image id
+        new_image = f"{cnt:03d}_" + image
+        # rename the file
+        os.rename(os.path.join(news_img_path, image), os.path.join(news_img_path, new_image))
+        cnt += 1
+        print(f"Renamed {cnt} images")
+
+def gen_img_fname_list(news_img_path):
+    # get all the images in the folder
+    fnames = [f for f in os.listdir(news_img_path) if '.jpg' in f]
+    # sort based on the number in the filename
+    fnames.sort(key=lambda x: int(x.split('_')[0]))
+    # write to a txt file
+    with open('images_news/img_fname_list.txt', 'w') as f:
+        for fname in fnames:
+            f.write(fname + '\n')
     
 
 if __name__ == '__main__':
     # get_data_info('N24News/news/nytimes_dataset.json')
-    get_eligible_images('N24News/news/nytimes_dataset.json')
+    # get_eligible_images('N24News/news/nytimes_dataset.json')
+    # rename_images('images_news/')
+    gen_img_fname_list('images_news/')
