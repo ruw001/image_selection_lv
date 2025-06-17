@@ -6,7 +6,7 @@ import visual_genome.local as vg
 import json
 import tqdm
 import urllib.request
-
+import random
 # read visual_genome/data/objects.json 
 # obj_data = json.load(open('visual_genome/data/objects.json'))
 # list of dicts. image_id, image_url, objects: list of dicts, each dict include object_id, names or synsets: list of one string, h, w, x, y
@@ -93,11 +93,33 @@ def get_eligible_imgs(obj_data_path, img_meta_data_path, num_limit=400):
                 'unique_objs': unique_objs
             }
         )
-    eligible_imgs.sort(key=lambda x: (x['obj_cnt'], len(x['unique_objs'])), reverse=True)
+    # sample 400 images by choosing 50 images from each obj_cnt level
+    eligible_imgs = sorted(eligible_imgs, key=lambda x: (x['obj_cnt'], len(x['unique_objs'])), reverse=True)
+    min_obj_cnt = 2
+    max_obj_cnt = eligible_imgs[0]['obj_cnt']
+    obj_cnt_range = max_obj_cnt - min_obj_cnt + 1
+    # generate 8 bins with lo and hi based on obj cnt range
+    bin_size = obj_cnt_range // 8
+    bins = [(min_obj_cnt + i * bin_size, min_obj_cnt + (i+1) * bin_size) for i in range(8)] # left inclusive, right exclusive
+    # divide eligible_imgs into 8 groups based on bins
+    eligible_imgs_groups = [[] for _ in range(8)]
+    for img in eligible_imgs:
+        if img['obj_cnt'] < min_obj_cnt: # single object images are not included
+            continue
+        for i in range(8):
+            if img['obj_cnt'] >= bins[i][0] and img['obj_cnt'] < bins[i][1]:
+                eligible_imgs_groups[i].append(img)
+                break
+    # sample 50 images from each group
+    sampled_imgs = []
+    for group in eligible_imgs_groups:
+        sampled_imgs.extend(random.sample(group, 50))
+    # sample 400 images by choosing 50 images from each obj_cnt level
     with open('visual_genome/data/eligible_imgs.tsv', 'w') as f:
-        for img in eligible_imgs[:num_limit]:
+        for img in sampled_imgs:
             f.write(str(img['img_id']) + '\t' + str(img['img_url']) + '\t' + str(img['obj_cnt']) + '\t' + str(img['unique_objs']) + '\n')
-    return eligible_imgs
+    return sampled_imgs
+    
 
 def download_imgs(eligible_imgs_path, img_dir):
     eligible_imgs = pd.read_csv(eligible_imgs_path, sep='\t')
