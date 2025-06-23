@@ -71,6 +71,8 @@ def get_eligible_imgs(obj_data_path, img_meta_data_path, num_limit=400):
         img_h = img_id_info[img_id]['height']
         if img_w < lowest_dim or img_h < lowest_dim:
             continue
+        if img_w < img_h: # only use landscape images
+            continue
         img_url = img_id_info[img_id]['url']
         objects = img['objects']
         unique_objs = set()
@@ -98,24 +100,28 @@ def get_eligible_imgs(obj_data_path, img_meta_data_path, num_limit=400):
     min_obj_cnt = 2
     max_obj_cnt = eligible_imgs[0]['obj_cnt']
     obj_cnt_range = max_obj_cnt - min_obj_cnt + 1
-    # generate 8 bins with lo and hi based on obj cnt range
-    bin_size = obj_cnt_range // 8
-    bins = [(min_obj_cnt + i * bin_size, min_obj_cnt + (i+1) * bin_size) for i in range(8)] # left inclusive, right exclusive
-    # divide eligible_imgs into 8 groups based on bins
-    eligible_imgs_groups = [[] for _ in range(8)]
+    # generate 5 bins with lo and hi based on obj cnt range
+    bin_size = obj_cnt_range // 5
+    bins = [(min_obj_cnt + i * bin_size, min_obj_cnt + (i+1) * bin_size) for i in range(5)] # left inclusive, right exclusive
+    # divide eligible_imgs into 5 groups based on bins
+    eligible_imgs_groups = [[] for _ in range(5)]
     for img in eligible_imgs:
         if img['obj_cnt'] < min_obj_cnt: # single object images are not included
             continue
-        for i in range(8):
+        for i in range(5):
             if img['obj_cnt'] >= bins[i][0] and img['obj_cnt'] < bins[i][1]:
                 eligible_imgs_groups[i].append(img)
                 break
-    # sample 50 images from each group
+    # sample 80 images from each group
     sampled_imgs = []
     for group in eligible_imgs_groups:
-        sampled_imgs.extend(random.sample(group, 50))
+        print(len(group))
+        if len(group) < 80:
+            sampled_imgs.extend(group)
+        else:
+            sampled_imgs.extend(random.sample(group, 80))
     # sample 400 images by choosing 50 images from each obj_cnt level
-    with open('visual_genome/data/eligible_imgs.tsv', 'w') as f:
+    with open('visual_genome/data/eligible_imgs_061725.tsv', 'w') as f:
         for img in sampled_imgs:
             f.write(str(img['img_id']) + '\t' + str(img['img_url']) + '\t' + str(img['obj_cnt']) + '\t' + str(img['unique_objs']) + '\n')
     return sampled_imgs
@@ -134,10 +140,30 @@ def download_imgs(eligible_imgs_path, img_dir):
             urllib.request.urlretrieve(img_url, img_path)
     return
 
+def rename_imgs(img_dir):
+    img_dir = 'images_eligible_061725'
+    cnt = 1
+    for img_path in os.listdir(img_dir):
+        new_img_path = f'{cnt:03d}_' + img_path
+        new_img_path = os.path.join(img_dir, new_img_path)
+        os.rename(os.path.join(img_dir, img_path), new_img_path)
+        cnt += 1
+    return
+
+def get_img_fname_list(img_dir):
+    img_fname_list = os.listdir(img_dir)
+    img_fname_list.sort(key=lambda x: int(x.split('_')[0]))
+    with open('visual_genome/data/img_fname_list_061725.txt', 'w') as f:
+        for img_fname in img_fname_list:
+            f.write(img_fname + '\n')
+    return
+
 # all_possible_obj = get_all_possible_obj('visual_genome/data/objects.json', 'visual_genome/data/image_data.json')
 
 # get_img_meta_data('visual_genome/data/image_data.json')
 
 # get_eligible_imgs('visual_genome/data/objects.json', 'visual_genome/data/image_data.json')
 
-download_imgs('visual_genome/data/eligible_imgs.tsv', 'images_eligible')
+# download_imgs('visual_genome/data/eligible_imgs_061725.tsv', 'images_eligible_061725')
+# rename_imgs('images_eligible_061725')
+get_img_fname_list('images_eligible_061725')

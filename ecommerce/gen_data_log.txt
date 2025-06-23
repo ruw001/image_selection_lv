@@ -1,0 +1,141 @@
+Number of images: 152755
+Processing image 0 / 152755
+Downloading image https://m.media-amazon.com/images/I/612KnHSE0mS._AC_SX679_.jpg
+Image aspect ratio is less than 1, ignoring it: 679 / 1042
+Processing image 1 / 152755
+Downloading image https://m.media-amazon.com/images/I/61QYoiaDRyL._SX522_.jpg
+this image does not have multiple salient objects
+Processing image 2 / 152755
+Downloading image https://m.media-amazon.com/images/I/51hp0aUPIUL._AC_SX569_.jpg
+this image does not have multiple salient objects
+Processing image 3 / 152755
+Downloading image https://m.media-amazon.com/images/I/610SlsK64zL._AC_SX569_.jpg
+this image does not have multiple salient objects
+Processing image 4 / 152755
+Downloading image https://m.media-amazon.com/images/I/71QGSjXcDML._AC_SX679_.jpg
+this image does not have multiple salient objects
+Processing image 5 / 152755
+Downloading image https://m.media-amazon.com/images/I/81xNvWUSgzL._AC_SY879_.jpg
+Image aspect ratio is less than 1, ignoring it: 579 / 879
+Processing image 6 / 152755
+Downloading image https://m.media-amazon.com/images/I/6165MNu--gL._AC_SX679_.jpg
+Image aspect ratio is less than 1, ignoring it: 679 / 701
+Processing image 7 / 152755
+Downloading image https://m.media-amazon.com/images/I/71wVW8usmuL._AC_SX575_.jpg
+this image does not have multiple salient objects
+Processing image 8 / 152755
+Downloading image https://m.media-amazon.com/images/I/815ZdyE8RRL._AC_SX679_.jpg
+This image has multiple salient objects -> about to save!!!
+Saved image 000_815ZdyE8RRL._AC_SX679_.jpg
+Processing image 9 / 152755
+Downloading image https://m.media-amazon.com/images/I/51We10+KLNL._AC_SX466_.jpg
+this image does not have multiple salient objects
+Processing image 10 / 152755
+Downloading image https://m.media-amazon.com/images/I/6118PtsOt6L._AC_SX679_.jpg
+Image aspect ratio is less than 1, ignoring it: 679 / 682
+Processing image 11 / 152755
+Downloading image https://m.media-amazon.com/images/I/61te-kqh-fL._AC_SY879_.jpg
+Image aspect ratio is less than 1, ignoring it: 247 / 879
+Processing image 12 / 152755
+Downloading image https://m.media-amazon.com/images/I/61BeXxgraKL._AC_SX575_.jpg
+this image does not have multiple salient objects
+Processing image 13 / 152755
+Downloading image https://m.media-amazon.com/images/I/71LnB-w072L._AC_SX569_.jpg
+Image aspect ratio is less than 1, ignoring it: 569 / 1006
+Processing image 14 / 152755
+Downloading image https://m.media-amazon.com/images/I/418j88EieRL._AC_SX679_.jpg
+Image aspect ratio is less than 1, ignoring it: 550 / 652
+Processing image 15 / 152755
+Downloading image https://m.media-amazon.com/images/I/71i896We19L._AC_SX679_.jpg
+this image does not have multiple salient objects
+Processing image 16 / 152755
+Downloading image https://m.media-amazon.com/images/I/71nyXeDVdfL._AC_SX466_.jpg
+Image aspect ratio is less than 1, ignoring it: 466 / 474
+Processing image 17 / 152755
+Downloading image https://m.media-amazon.com/images/I/71nMyhvF48L._AC_SX425_.jpg
+Image aspect ratio is less than 1, ignoring it: 425 / 509
+Processing image 18 / 152755
+Downloading image https://m.media-amazon.com/images/I/51hs6DO0lPL._AC_SX569_.jpg
+this image does not have multiple salient objects
+Processing image 19 / 152755
+Downloading image https://m.media-amazon.com/images/I/415nulgUShL._SX522_.jpg
+this image does not have multiple salient objects
+Processing image 20 / 152755
+Downloading image https://m.media-amazon.com/images/I/81CtWeW2DVL._AC_SX466_.jpg
+Image aspect ratio is less than 1, ignoring it: 466 / 503
+Processing image 21 / 152755
+Downloading image https://m.media-amazon.com/images/I/81370Qz0HVL._AC_SY575_.jpg
+this image does not have multiple salient objects
+Processing image 22 / 152755
+Downloading image https://m.media-amazon.com/images/I/71SQ1jJwXlL._AC_SX385_.jpg
+Image aspect ratio is less than 1, ignoring it: 385 / 651
+Processing image 23 / 152755
+Downloading image https://m.media-amazon.com/images/I/71yVL51YIoL._AC_SX569_.jpg
+This image has multiple salient objects -> about to save!!!
+Saved image 001_71yVL51YIoL._AC_SX569_.jpg
+Processing image 24 / 152755
+Downloading image https://m.media-amazon.com/images/I/51vb02dXDVL._AC_SX679_.jpg
+Image aspect ratio is less than 1, ignoring it: 679 / 765
+Processing image 25 / 152755
+Downloading image https://m.media-amazon.com/images/I/91SgqEc9HxL._AC_SX425_.jpg
+this image does not have multiple salient objects
+Processing image 26 / 152755
+Downloading image https://m.media-amazon.com/images/I/91NZR35RRhL._AC_SX450_.jpg
+this image does not have multiple salient objects
+Processing image 27 / 152755
+Downloading image https://m.media-amazon.com/images/I/612krg1hXPL._AC_SX425_.jpg
+this image does not have multiple salient objects
+Processing image 28 / 152755
+Downloading image https://m.media-amazon.com/images/I/91xbxMatG8L._AC_SX679_.jpg
+this image does not have multiple salient objects
+Processing image 29 / 152755
+Downloading image https://m.media-amazon.com/images/I/610q-0dc9pL._AC_SX679_.jpg
+Image aspect ratio is less than 1, ignoring it: 679 / 686
+Processing image 30 / 152755
+Downloading image https://m.media-amazon.com/images/I/71oEpwpZ5zL._SX522_.jpg
+this image does not have multiple salient objects
+Processing image 31 / 152755
+Downloading image https://m.media-amazon.com/images/I/71ohzmTYPsL._AC_SX425_PIbundle-3,TopRight,0,0_SH20_.jpg
+this image does not have multiple salient objects
+Processing image 32 / 152755
+Downloading image https://m.media-amazon.com/images/I/71cB3klmy6L._AC_SX679_.jpg
+this image does not have multiple salient objects
+Processing image 33 / 152755
+Downloading image https://m.media-amazon.com/images/I/51l3Iw+m4jL._AC_SX679_.jpg
+this image does not have multiple salient objects
+Processing image 34 / 152755
+Downloading image https://m.media-amazon.com/images/I/61KOxPXw2mL._SX679_.jpg
+this image does not have multiple salient objects
+Processing image 35 / 152755
+Downloading image https://m.media-amazon.com/images/I/71BeSATDhuS._AC_SX679_.jpg
+This image has multiple salient objects -> about to save!!!
+Saved image 002_71BeSATDhuS._AC_SX679_.jpg
+Processing image 36 / 152755
+Downloading image https://m.media-amazon.com/images/I/71dnkNWSZnL._AC_SX679_.jpg
+this image does not have multiple salient objects
+Processing image 37 / 152755
+Downloading image https://m.media-amazon.com/images/I/71V6l8jK7eL._AC_SX679_.jpg
+this image does not have multiple salient objects
+Processing image 38 / 152755
+Downloading image https://m.media-amazon.com/images/I/41txYXeA5ZL._AC_SX679_.jpg
+this image does not have multiple salient objects
+Processing image 39 / 152755
+Downloading image https://m.media-amazon.com/images/I/818gbv0D+sL._AC_SX679_.jpg
+this image does not have multiple salient objects
+Processing image 40 / 152755
+Downloading image https://m.media-amazon.com/images/I/61CtBrEFsmL._AC_SX679_.jpg
+Image aspect ratio is less than 1, ignoring it: 679 / 730
+Processing image 41 / 152755
+Downloading image https://m.media-amazon.com/images/I/91QcamHHIML._AC_SX679_.jpg
+this image does not have multiple salient objects
+Processing image 42 / 152755
+Downloading image https://m.media-amazon.com/images/I/610LkcbqWzL._AC_SX679_.jpg
+this image does not have multiple salient objects
+Processing image 43 / 152755
+Downloading image https://m.media-amazon.com/images/I/81fvC3pTtNL._AC_SX425_.jpg
+this image does not have multiple salient objects
+Processing image 44 / 152755
+Downloading image https://m.media-amazon.com/images/I/71L-T21YgzL._AC_SX569_.jpg
+this image does not have multiple salient objects
+Processing image 45 / 152755
+Downloading image https://m.media-amazon.com/images/I/01bSoOBrICL._AC_.jpg
