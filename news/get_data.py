@@ -93,6 +93,16 @@ def rename_images(news_img_path):
         cnt += 1
         print(f"Renamed {cnt} images")
 
+def add_source_prefix(news_img_path):
+    # get all the images in the folder
+    images = os.listdir(news_img_path)
+    print(f"Adding source prefix to {len(images)} images...")
+    for image in images:
+        # get the image id
+        new_image = 'news_' + image
+        # rename the file
+        os.rename(os.path.join(news_img_path, image), os.path.join(news_img_path, new_image))
+
 def gen_img_fname_list(news_img_path):
     # get all the images in the folder
     fnames = [f for f in os.listdir(news_img_path) if '.jpg' in f]
@@ -108,4 +118,5 @@ if __name__ == '__main__':
     # get_data_info('N24News/news/nytimes_dataset.json')
     # get_eligible_images('N24News/news/nytimes_dataset.json')
     # rename_images('images_news/')
-    gen_img_fname_list('images_news/')
+    # gen_img_fname_list('images_news/')
+    add_source_prefix('images_news_finalized/')
