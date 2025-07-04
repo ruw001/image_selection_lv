@@ -42,6 +42,7 @@ def gen_questions(img_dir):
             prompt=question_gen_prompt,
             images=[img_b64],
         )
+        
         print(resp['response'])
 
 if __name__ == '__main__':
