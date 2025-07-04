@@ -528,6 +528,13 @@ def get_img_fname_list(img_dir):
             f.write(img_fname + '\n')
     return
 
+def add_source_prefix(img_dir): #    img_dir = 'images_eligible_finalized'
+    for img_path in os.listdir(img_dir):
+        new_img_path = 'social_' + img_path
+        new_img_path = os.path.join(img_dir, new_img_path)
+        os.rename(os.path.join(img_dir, img_path), new_img_path)
+    return
+
 # all_possible_obj = get_all_possible_obj('visual_genome/data/objects.json', 'visual_genome/data/image_data.json')
 
 # get_img_meta_data('visual_genome/data/image_data.json')

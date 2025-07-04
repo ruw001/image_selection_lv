@@ -3,6 +3,8 @@ import pandas as pd
 import os
 import requests
 import ollama
+import re
+import shutil
 
 # get all images from photos.csv000 from https://github.com/Crossing-Minds/shopping-queries-image-dataset
 
@@ -60,6 +62,60 @@ def get_images(cvs_file):
         else:
             print(f"!!! Failed to download image from {url}")
         
+def extract_pixabay_link(filepath):
+    folders = os.listdir(filepath)
+    for fd in folders:
+        if not os.path.isdir(os.path.join(filepath, fd)):
+            continue
+        imgs = os.listdir(os.path.join(filepath, fd))
+        # Process images in each folder
+        # check if an image is a pattern xxx-{idx}_yyy.jpg, if so, get the idx, xxx can be anything not just digits, yyy is a number
+        print(f"processing {fd}...")
+        for img in imgs:
+            if img.endswith(('.jpg', '.jpeg', '.png')) and '-' in img:
+                # get the idx from the image name
+                idx = img.split('-')[-1].split('_')[0]
+                print(f"idx: {idx}")
+                # get the link from the image name
+                link = f"https://pixabay.com/photos/id-{idx}"
+                print(f"link: {link}")
+
+def copy_images_to_finalized():
+    """Copy all images from travel_new subfolders to image_finalized directory"""
+    source_dir = 'travel_new'
+    target_dir = 'image_finalized'
+    
+    # Create target directory if it doesn't exist
+    if not os.path.exists(target_dir):
+        os.makedirs(target_dir)
+    
+    # Get all subfolders in travel_new
+    subfolders = [f for f in os.listdir(source_dir) if os.path.isdir(os.path.join(source_dir, f))]
+    
+    total_copied = 0
+    
+    for subfolder in subfolders:
+        print(f"Processing subfolder: {subfolder}")
+        subfolder_path = os.path.join(source_dir, subfolder)
+        
+        # Get all image files in the subfolder
+        image_files = [f for f in os.listdir(subfolder_path) 
+                      if f.lower().endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp'))]
+        
+        for image_file in image_files:
+            source_path = os.path.join(subfolder_path, image_file)
+            target_path = os.path.join(target_dir, f'travel_{total_copied:03d}_' + image_file)
+            
+            try:
+                shutil.copy2(source_path, target_path)
+                print(f"Copied: {image_file}")
+                total_copied += 1
+            except Exception as e:
+                print(f"Error copying {image_file}: {e}")
+    
+    print(f"Total images copied: {total_copied}")
 
 # get_header('unsplash-research-dataset-lite-latest/photos.csv000')
-get_images('photos.csv000')
+# get_images('photos.csv000')
+# extract_pixabay_link('travel_new')
+copy_images_to_finalized()

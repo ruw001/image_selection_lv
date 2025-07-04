@@ -128,6 +128,13 @@ def download_images(cvs_file, num_selected, output_dir='data'):
         except Exception as e:
             print(f'Error downloading image {url}: {e}')
 
+def add_source_prefix(img_dir):
+    for img_path in os.listdir(img_dir):
+        new_img_path = 'ecommerce_' + img_path
+        new_img_path = os.path.join(img_dir, new_img_path)
+        os.rename(os.path.join(img_dir, img_path), new_img_path)
+    return
     
 # download_images('product_image_urls.csv', 400)
-get_images_with_multiple_salient_objects('product_image_urls.csv')
+# get_images_with_multiple_salient_objects('product_image_urls.csv')
+add_source_prefix('images_with_multiple_salient_objects')

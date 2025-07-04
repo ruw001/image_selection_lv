@@ -51,3 +51,5 @@ data/
 *.json
 # Logs
 *.log 
+
+viz/SalChartQA/
